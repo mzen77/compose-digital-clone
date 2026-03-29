@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
   title: "Projects — Compose",
@@ -47,42 +48,44 @@ export default function ProjectsPage() {
     <>
       {/* Hero Section */}
       <section className="w-full flex justify-center items-center px-10 pt-[140px] pb-[80px] max-md:px-5 max-md:pt-[100px] max-md:pb-[60px]">
-        <div className="max-w-[1360px] w-full flex flex-col gap-6">
-          <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
-            OUR PROJECT
-          </p>
-          <h1 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-w-[700px] max-md:text-[28px]">
-            Crafting Success, One Project at a Time
-          </h1>
-          <p className="text-base leading-[1.6] text-[#595959] max-w-[720px]">
-            At Compose, we&apos;re passionate about transforming brands through
-            impactful digital strategies. Our work spans across industries, each
-            project uniquely crafted to reflect our client&apos;s vision and
-            achieve measurable results. Take a look at some of our proudest
-            projects and see how we turn ideas into impactful experiences.
-          </p>
+        <AnimateOnScroll>
+          <div className="max-w-[1360px] w-full flex flex-col gap-6">
+            <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
+              OUR PROJECT
+            </p>
+            <h1 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-w-[700px] max-md:text-[28px]">
+              Crafting Success, One Project at a Time
+            </h1>
+            <p className="text-base leading-[1.6] text-[#595959] max-w-[720px]">
+              At Compose, we&apos;re passionate about transforming brands through
+              impactful digital strategies. Our work spans across industries, each
+              project uniquely crafted to reflect our client&apos;s vision and
+              achieve measurable results. Take a look at some of our proudest
+              projects and see how we turn ideas into impactful experiences.
+            </p>
 
-          {/* Social icons row + Scroll to Explore */}
-          <div className="flex items-center justify-between mt-4 border-t border-[#e5e5e5] pt-6">
-            <div className="flex items-center gap-3">
-              {socialPlaceholders.map((i) => (
-                <div
-                  key={i}
-                  className="w-9 h-9 rounded-full border border-[#e5e5e5] flex items-center justify-center"
-                  aria-hidden="true"
-                >
-                  <div className="w-4 h-4 rounded-full bg-[#d9d9d9]" />
-                </div>
-              ))}
+            {/* Social icons row + Scroll to Explore */}
+            <div className="flex items-center justify-between mt-4 border-t border-[#e5e5e5] pt-6">
+              <div className="flex items-center gap-3">
+                {socialPlaceholders.map((i) => (
+                  <div
+                    key={i}
+                    className="w-9 h-9 rounded-full border border-[#e5e5e5] flex items-center justify-center"
+                    aria-hidden="true"
+                  >
+                    <div className="w-4 h-4 rounded-full bg-[#d9d9d9]" />
+                  </div>
+                ))}
+              </div>
+              <a
+                href="#project-grid"
+                className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010] hover:opacity-70 transition-opacity"
+              >
+                Scroll to Explore
+              </a>
             </div>
-            <a
-              href="#project-grid"
-              className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010] hover:opacity-70 transition-opacity"
-            >
-              Scroll to Explore
-            </a>
           </div>
-        </div>
+        </AnimateOnScroll>
       </section>
 
       {/* Project Grid */}
@@ -92,8 +95,9 @@ export default function ProjectsPage() {
       >
         <div className="max-w-[1360px] w-full">
           <div className="grid grid-cols-3 gap-8 max-lg:grid-cols-2 max-md:grid-cols-1">
-            {projects.map((project) => (
-              <article key={project.company} className="flex flex-col gap-4">
+            {projects.map((project, i) => (
+              <AnimateOnScroll key={project.company} delay={i * 100}>
+              <article className="flex flex-col gap-4">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-[10px] group">
                   <Image
                     src={project.image}
@@ -117,6 +121,7 @@ export default function ProjectsPage() {
                   </h2>
                 </div>
               </article>
+              </AnimateOnScroll>
             ))}
           </div>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 interface BlogPost {
   slug: string;
@@ -209,34 +210,40 @@ export default async function BlogPostPage({
     <>
       {/* Title */}
       <section className="w-full flex justify-center px-10 pt-[140px] pb-6 max-md:px-5 max-md:pt-[100px]">
-        <h1 className="text-[42px] font-medium leading-[1.2] text-[#101010] text-center max-w-[800px] max-md:text-[28px]">
-          {post.title}
-        </h1>
+        <AnimateOnScroll>
+          <h1 className="text-[42px] font-medium leading-[1.2] text-[#101010] text-center max-w-[800px] max-md:text-[28px]">
+            {post.title}
+          </h1>
+        </AnimateOnScroll>
       </section>
 
       {/* Meta Row */}
       <section className="w-full flex justify-center px-10 pb-10 max-md:px-5">
-        <div className="flex items-center gap-3 text-[13px]">
-          <span className="text-[#595959]">Posted on</span>
-          <span className="font-medium text-[#101010]">{post.category}</span>
-          <span className="w-[5px] h-[5px] rounded-full bg-[#b3ff00] inline-block" />
-          <span className="text-[#595959]">Posted at</span>
-          <span className="font-medium text-[#101010]">{post.date}</span>
-        </div>
+        <AnimateOnScroll delay={100}>
+          <div className="flex items-center gap-3 text-[13px]">
+            <span className="text-[#595959]">Posted on</span>
+            <span className="font-medium text-[#101010]">{post.category}</span>
+            <span className="w-[5px] h-[5px] rounded-full bg-[#b3ff00] inline-block" />
+            <span className="text-[#595959]">Posted at</span>
+            <span className="font-medium text-[#101010]">{post.date}</span>
+          </div>
+        </AnimateOnScroll>
       </section>
 
       {/* Hero Image */}
       <section className="w-full flex justify-center px-10 pb-16 max-md:px-5">
-        <div className="relative w-full max-w-[1000px] aspect-[16/9] overflow-hidden rounded-[10px]">
-          <Image
-            src={post.image}
-            alt={post.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 1000px"
-            priority
-          />
-        </div>
+        <AnimateOnScroll delay={200}>
+          <div className="relative w-full max-w-[1000px] aspect-[16/9] overflow-hidden rounded-[10px]">
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1000px"
+              priority
+            />
+          </div>
+        </AnimateOnScroll>
       </section>
 
       {/* Body Content */}
@@ -249,14 +256,16 @@ export default async function BlogPostPage({
 
           {/* Sections */}
           {post.sections.map((section) => (
-            <div key={section.heading} className="flex flex-col gap-4">
-              <h2 className="text-[24px] font-medium leading-[1.3] text-[#101010]">
-                {section.heading}
-              </h2>
-              <p className="text-base leading-[1.7] text-[#595959]">
-                {section.body}
-              </p>
-            </div>
+            <AnimateOnScroll key={section.heading}>
+              <div className="flex flex-col gap-4">
+                <h2 className="text-[24px] font-medium leading-[1.3] text-[#101010]">
+                  {section.heading}
+                </h2>
+                <p className="text-base leading-[1.7] text-[#595959]">
+                  {section.body}
+                </p>
+              </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </section>
@@ -297,14 +306,16 @@ export default async function BlogPostPage({
       {/* More Blog Section */}
       <section className="w-full flex justify-center px-10 pb-[100px] max-md:px-5 max-md:pb-[60px]">
         <div className="max-w-[1360px] w-full flex flex-col gap-10">
-          <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
-            More Blog
-          </h2>
+          <AnimateOnScroll>
+            <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
+              More Blog
+            </h2>
+          </AnimateOnScroll>
 
           <div className="grid grid-cols-3 gap-[20px] max-lg:grid-cols-2 max-md:grid-cols-1">
-            {relatedPosts.map((related) => (
+            {relatedPosts.map((related, i) => (
+              <AnimateOnScroll key={related.slug} delay={i * 100}>
               <Link
-                key={related.slug}
                 href={`/blog/${related.slug}`}
                 className="flex flex-col group"
               >
@@ -329,6 +340,7 @@ export default async function BlogPostPage({
                   </p>
                 </div>
               </Link>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>

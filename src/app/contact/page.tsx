@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 const SERVICES = [
   "Branding and Strategy",
@@ -34,20 +35,23 @@ export default function ContactPage() {
     <section className="px-6 py-24 md:py-32">
       <div className="mx-auto max-w-[800px]">
         {/* Heading area */}
-        <div className="text-center mb-16">
-          <h1 className="text-[42px] font-medium leading-tight text-text-primary">
-            Get in touch.
-            <br />
-            Stay connected fast.
-          </h1>
-          <p className="mx-auto mt-6 max-w-[600px] text-base text-text-secondary">
-            Before we begin, we&apos;d like to gain a deeper understanding of
-            your needs. We&apos;ll review your application and arrange a free
-            consultation to provide an estimate.
-          </p>
-        </div>
+        <AnimateOnScroll>
+          <div className="text-center mb-16">
+            <h1 className="text-[42px] font-medium leading-tight text-text-primary">
+              Get in touch.
+              <br />
+              Stay connected fast.
+            </h1>
+            <p className="mx-auto mt-6 max-w-[600px] text-base text-text-secondary">
+              Before we begin, we&apos;d like to gain a deeper understanding of
+              your needs. We&apos;ll review your application and arrange a free
+              consultation to provide an estimate.
+            </p>
+          </div>
+        </AnimateOnScroll>
 
         {/* Contact Form */}
+        <AnimateOnScroll delay={150}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -125,6 +129,7 @@ export default function ContactPage() {
             Send message
           </button>
         </form>
+        </AnimateOnScroll>
       </div>
     </section>
   );

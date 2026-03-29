@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRightIcon } from "@/components/icons";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
   title: "About — Compose",
@@ -52,41 +53,43 @@ export default function AboutPage() {
     <>
       {/* Hero Section */}
       <section className="w-full flex justify-center items-center px-10 pt-[140px] pb-[80px] max-md:px-5 max-md:pt-[100px] max-md:pb-[60px]">
-        <div className="max-w-[1360px] w-full flex flex-col gap-6">
-          <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
-            ABOUT US
-          </p>
-          <h1 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-w-[700px] max-md:text-[28px]">
-            Crafting Digital Connections That Drive Growth
-          </h1>
-          <p className="text-base leading-[1.6] text-[#595959] max-w-[720px]">
-            At Compose, we blend creativity, data, and strategy to elevate brands
-            in the digital space. Our team of experts is dedicated to building
-            engaging, results-driven campaigns that turn brand stories into
-            unforgettable experiences.
-          </p>
+        <AnimateOnScroll>
+          <div className="max-w-[1360px] w-full flex flex-col gap-6">
+            <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
+              ABOUT US
+            </p>
+            <h1 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-w-[700px] max-md:text-[28px]">
+              Crafting Digital Connections That Drive Growth
+            </h1>
+            <p className="text-base leading-[1.6] text-[#595959] max-w-[720px]">
+              At Compose, we blend creativity, data, and strategy to elevate brands
+              in the digital space. Our team of experts is dedicated to building
+              engaging, results-driven campaigns that turn brand stories into
+              unforgettable experiences.
+            </p>
 
-          {/* Social icons row + Scroll to Explore */}
-          <div className="flex items-center justify-between mt-4 border-t border-[#e5e5e5] pt-6">
-            <div className="flex items-center gap-3">
-              {socialPlaceholders.map((i) => (
-                <div
-                  key={i}
-                  className="w-9 h-9 rounded-full border border-[#e5e5e5] flex items-center justify-center"
-                  aria-hidden="true"
-                >
-                  <div className="w-4 h-4 rounded-full bg-[#d9d9d9]" />
-                </div>
-              ))}
+            {/* Social icons row + Scroll to Explore */}
+            <div className="flex items-center justify-between mt-4 border-t border-[#e5e5e5] pt-6">
+              <div className="flex items-center gap-3">
+                {socialPlaceholders.map((i) => (
+                  <div
+                    key={i}
+                    className="w-9 h-9 rounded-full border border-[#e5e5e5] flex items-center justify-center"
+                    aria-hidden="true"
+                  >
+                    <div className="w-4 h-4 rounded-full bg-[#d9d9d9]" />
+                  </div>
+                ))}
+              </div>
+              <a
+                href="#about-content"
+                className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010] hover:opacity-70 transition-opacity"
+              >
+                Scroll to Explore
+              </a>
             </div>
-            <a
-              href="#about-content"
-              className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010] hover:opacity-70 transition-opacity"
-            >
-              Scroll to Explore
-            </a>
           </div>
-        </div>
+        </AnimateOnScroll>
       </section>
 
       {/* About Content Section */}
@@ -96,7 +99,7 @@ export default function AboutPage() {
       >
         <div className="max-w-[1360px] w-full flex flex-row gap-[50px] max-md:flex-col">
           {/* Left: Text content */}
-          <div className="w-1/2 flex flex-col gap-6 justify-center max-md:w-full">
+          <AnimateOnScroll className="w-1/2 flex flex-col gap-6 justify-center max-md:w-full">
             <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
               WHO WE ARE?
             </p>
@@ -121,10 +124,10 @@ export default function AboutPage() {
                 <ArrowRightIcon className="w-4 h-4" />
               </a>
             </div>
-          </div>
+          </AnimateOnScroll>
 
           {/* Right: Image */}
-          <div className="w-1/2 max-md:w-full">
+          <AnimateOnScroll delay={150} className="w-1/2 max-md:w-full">
             <div className="relative w-full aspect-[3/4] rounded-[10px] overflow-hidden">
               <Image
                 src="/images/about-hero.jpg"
@@ -134,7 +137,7 @@ export default function AboutPage() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-          </div>
+          </AnimateOnScroll>
         </div>
       </section>
 
@@ -152,7 +155,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-black/60" />
 
         {/* Content */}
-        <div className="relative z-10 max-w-[1360px] w-full px-10 flex flex-row gap-[50px] items-center max-md:flex-col max-md:px-5">
+        <AnimateOnScroll className="relative z-10 max-w-[1360px] w-full px-10 flex flex-row gap-[50px] items-center max-md:flex-col max-md:px-5">
           {/* Portrait */}
           <div className="w-[280px] flex-shrink-0 max-md:w-[200px]">
             <div className="relative aspect-[3/4] rounded-[10px] overflow-hidden">
@@ -179,16 +182,16 @@ export default function AboutPage() {
               — Davide Gotlieb, Founder of Compose
             </p>
           </div>
-        </div>
+        </AnimateOnScroll>
       </section>
 
       {/* Stats Section */}
       <section className="w-full flex justify-center items-center px-10 py-[100px] max-md:px-5 max-md:py-16">
         <div className="max-w-[1360px] w-full">
           <div className="grid grid-cols-4 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
-            {stats.map((stat) => (
+            {stats.map((stat, i) => (
+              <AnimateOnScroll key={stat.label} delay={i * 100}>
               <div
-                key={stat.label}
                 className="flex flex-col gap-2 text-center border border-[#e5e5e5] rounded-[10px] p-8"
               >
                 <span className="text-[48px] font-medium leading-none text-[#101010] max-md:text-[36px]">
@@ -198,6 +201,7 @@ export default function AboutPage() {
                   {stat.label}
                 </span>
               </div>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
@@ -207,25 +211,28 @@ export default function AboutPage() {
       <section className="w-full flex justify-center items-center px-10 py-[100px] max-md:px-5 max-md:py-16">
         <div className="max-w-[1360px] w-full flex flex-col gap-[50px]">
           {/* Header */}
-          <div className="flex flex-col gap-6 max-w-[720px]">
-            <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
-              OUR TEAM
-            </p>
-            <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
-              Crafting Digital Success with Passion &amp; Expertise
-            </h2>
-            <p className="text-base leading-[1.6] text-[#595959]">
-              Our team is a diverse group of strategists, creatives, developers,
-              and marketers who share a common goal: delivering exceptional
-              results for our clients. Each member brings a unique perspective and
-              skill set to the table.
-            </p>
-          </div>
+          <AnimateOnScroll>
+            <div className="flex flex-col gap-6 max-w-[720px]">
+              <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
+                OUR TEAM
+              </p>
+              <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
+                Crafting Digital Success with Passion &amp; Expertise
+              </h2>
+              <p className="text-base leading-[1.6] text-[#595959]">
+                Our team is a diverse group of strategists, creatives, developers,
+                and marketers who share a common goal: delivering exceptional
+                results for our clients. Each member brings a unique perspective and
+                skill set to the table.
+              </p>
+            </div>
+          </AnimateOnScroll>
 
           {/* Team Grid */}
           <div className="grid grid-cols-3 gap-8 max-lg:grid-cols-2 max-md:grid-cols-1">
-            {teamMembers.map((member) => (
-              <div key={member.name} className="flex flex-col gap-4">
+            {teamMembers.map((member, i) => (
+              <AnimateOnScroll key={member.name} delay={i * 100}>
+              <div className="flex flex-col gap-4">
                 <div className="relative aspect-[3/4] rounded-[10px] overflow-hidden">
                   <Image
                     src={member.image}
@@ -244,6 +251,7 @@ export default function AboutPage() {
                   </span>
                 </div>
               </div>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
@@ -252,15 +260,17 @@ export default function AboutPage() {
       {/* Open Positions Section */}
       <section className="w-full flex justify-center items-center px-10 py-[100px] max-md:px-5 max-md:py-16">
         <div className="max-w-[1360px] w-full flex flex-col gap-[50px]">
-          <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
-            Open Positions
-          </h2>
+          <AnimateOnScroll>
+            <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
+              Open Positions
+            </h2>
+          </AnimateOnScroll>
 
           {/* Job Listings */}
           <div className="flex flex-col divide-y divide-[#e5e5e5] border-t border-b border-[#e5e5e5]">
-            {openPositions.map((position) => (
+            {openPositions.map((position, i) => (
+              <AnimateOnScroll key={position.title} delay={i * 100}>
               <div
-                key={position.title}
                 className="flex flex-row items-start justify-between py-8 gap-8 max-md:flex-col max-md:gap-4"
               >
                 <div className="flex flex-col gap-3 flex-1">
@@ -284,6 +294,7 @@ export default function AboutPage() {
                   <ArrowRightIcon className="w-4 h-4" />
                 </a>
               </div>
+              </AnimateOnScroll>
             ))}
           </div>
 

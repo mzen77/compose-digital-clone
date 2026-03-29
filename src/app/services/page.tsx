@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ArrowRightIcon } from "@/components/icons";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 const services = [
   {
@@ -97,41 +98,43 @@ export default function ServicesPage() {
     <>
       {/* Hero Section */}
       <section className="w-full flex justify-center px-10 pt-[50px] pb-[100px] max-md:px-5 max-md:pt-8 max-md:pb-16">
-        <div className="max-w-[1360px] w-full flex flex-col gap-[30px]">
-          <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
-            OUR SERVICES
-          </p>
-          <h1 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-w-[700px] max-md:text-[28px]">
-            Empowering Brands with Digital Marketing That Delivers
-          </h1>
-          <p className="text-base leading-[1.5] text-[#595959] max-w-[600px]">
-            At Compose, we offer a full suite of digital marketing services
-            designed to grow your brand, engage your audience, and deliver
-            measurable results. Every service we provide is tailored to meet the
-            unique needs of your business, with a focus on strategy, creativity,
-            and impact.
-          </p>
+        <AnimateOnScroll>
+          <div className="max-w-[1360px] w-full flex flex-col gap-[30px]">
+            <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
+              OUR SERVICES
+            </p>
+            <h1 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-w-[700px] max-md:text-[28px]">
+              Empowering Brands with Digital Marketing That Delivers
+            </h1>
+            <p className="text-base leading-[1.5] text-[#595959] max-w-[600px]">
+              At Compose, we offer a full suite of digital marketing services
+              designed to grow your brand, engage your audience, and deliver
+              measurable results. Every service we provide is tailored to meet the
+              unique needs of your business, with a focus on strategy, creativity,
+              and impact.
+            </p>
 
-          {/* Social icons + Scroll to Explore */}
-          <div className="flex items-center justify-between pt-4 border-t border-[#e5e5e5]">
-            <div className="flex items-center gap-3">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="w-9 h-9 rounded-full bg-[#e5e5e5]"
-                  aria-hidden="true"
-                />
-              ))}
+            {/* Social icons + Scroll to Explore */}
+            <div className="flex items-center justify-between pt-4 border-t border-[#e5e5e5]">
+              <div className="flex items-center gap-3">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-9 h-9 rounded-full bg-[#e5e5e5]"
+                    aria-hidden="true"
+                  />
+                ))}
+              </div>
+              <a
+                href="#services-grid"
+                className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010] hover:underline flex items-center gap-2"
+              >
+                Scroll to Explore
+                <ArrowRightIcon className="w-4 h-4" />
+              </a>
             </div>
-            <a
-              href="#services-grid"
-              className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010] hover:underline flex items-center gap-2"
-            >
-              Scroll to Explore
-              <ArrowRightIcon className="w-4 h-4" />
-            </a>
           </div>
-        </div>
+        </AnimateOnScroll>
       </section>
 
       {/* Services Grid Section */}
@@ -141,22 +144,25 @@ export default function ServicesPage() {
       >
         <div className="max-w-[1360px] w-full flex flex-col gap-[60px]">
           {/* Section header */}
-          <div className="flex flex-col gap-[20px] max-w-[600px]">
-            <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
-              Tailored Digital Strategies for Growth and Impact
-            </p>
-            <p className="text-base leading-[1.5] text-[#595959]">
-              At Compose, our services are crafted to amplify your brand, engage
-              your audience, and drive measurable results. From impactful content
-              to SEO that enhances visibility, we&apos;re here to elevate your
-              digital presence.
-            </p>
-          </div>
+          <AnimateOnScroll>
+            <div className="flex flex-col gap-[20px] max-w-[600px]">
+              <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
+                Tailored Digital Strategies for Growth and Impact
+              </p>
+              <p className="text-base leading-[1.5] text-[#595959]">
+                At Compose, our services are crafted to amplify your brand, engage
+                your audience, and drive measurable results. From impactful content
+                to SEO that enhances visibility, we&apos;re here to elevate your
+                digital presence.
+              </p>
+            </div>
+          </AnimateOnScroll>
 
           {/* 2-column grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-[60px]">
-            {services.map((service) => (
-              <div key={service.title} className="flex flex-col gap-5">
+            {services.map((service, i) => (
+              <AnimateOnScroll key={service.title} delay={i % 2 === 0 ? 0 : 100}>
+              <div className="flex flex-col gap-5">
                 <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden">
                   <Image
                     src={service.image}
@@ -179,6 +185,7 @@ export default function ServicesPage() {
                   <ArrowRightIcon className="w-3 h-3" />
                 </a>
               </div>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
@@ -186,7 +193,7 @@ export default function ServicesPage() {
 
       {/* Process Section — "How we work?" */}
       <section className="w-full flex flex-col items-center py-[100px] overflow-hidden max-md:py-16">
-        <div className="max-w-[1360px] w-full px-10 flex flex-col gap-[30px] max-md:px-5">
+        <AnimateOnScroll className="max-w-[1360px] w-full px-10 flex flex-col gap-[30px] max-md:px-5">
           <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
             HOW WE WORK?
           </p>
@@ -199,7 +206,7 @@ export default function ServicesPage() {
             focus on transparent, collaborative steps that fuel growth for your
             brand.
           </p>
-        </div>
+        </AnimateOnScroll>
 
         {/* Marquee */}
         <div className="w-full overflow-hidden mt-[60px]">
@@ -232,47 +239,54 @@ export default function ServicesPage() {
 
       {/* CTA Section */}
       <section className="w-full flex justify-center px-10 py-[100px] bg-[#101010] max-md:px-5 max-md:py-16">
-        <div className="max-w-[1360px] w-full flex flex-col items-center text-center gap-[20px]">
-          <h2 className="text-[42px] font-medium leading-[1.2] text-[#fcfcfc] max-md:text-[28px]">
-            Get in Touch with Compose
-          </h2>
-          <p className="text-[24px] font-medium leading-[1.2] text-[#fcfcfc]/70 max-md:text-[18px]">
-            Collaboration, Work Enquires or Just Say Hello.
-          </p>
-          <p className="text-base leading-[1.5] text-[#fcfcfc]/50 max-w-[500px]">
-            Contact us today, and let&apos;s start creating the space
-            you&apos;ve imagined. We&apos;re here to guide you from design to
-            construction.
-          </p>
-          <a
-            href="#"
-            className="mt-4 bg-[#fcfcfc] text-[#101010] px-8 py-3.5 rounded-full text-[13px] font-medium uppercase tracking-[0.03em] hover:bg-[#e5e5e5] transition-colors"
-          >
-            Drop us a line
-          </a>
-        </div>
+        <AnimateOnScroll>
+          <div className="max-w-[1360px] w-full flex flex-col items-center text-center gap-[20px]">
+            <h2 className="text-[42px] font-medium leading-[1.2] text-[#fcfcfc] max-md:text-[28px]">
+              Get in Touch with Compose
+            </h2>
+            <p className="text-[24px] font-medium leading-[1.2] text-[#fcfcfc]/70 max-md:text-[18px]">
+              Collaboration, Work Enquires or Just Say Hello.
+            </p>
+            <p className="text-base leading-[1.5] text-[#fcfcfc]/50 max-w-[500px]">
+              Contact us today, and let&apos;s start creating the space
+              you&apos;ve imagined. We&apos;re here to guide you from design to
+              construction.
+            </p>
+            <a
+              href="#"
+              className="mt-4 bg-[#fcfcfc] text-[#101010] px-8 py-3.5 rounded-full text-[13px] font-medium uppercase tracking-[0.03em] hover:bg-[#e5e5e5] transition-colors"
+            >
+              Drop us a line
+            </a>
+          </div>
+        </AnimateOnScroll>
       </section>
 
       {/* Testimonials Section */}
       <section className="w-full flex justify-center px-10 py-[100px] max-md:px-5 max-md:py-16">
         <div className="max-w-[1360px] w-full flex flex-col gap-[40px]">
-          <div className="flex flex-col gap-[20px]">
-            <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
-              TESTIMONIALS
-            </p>
-            <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
-              Hear From Customers
-            </h2>
-          </div>
+          <AnimateOnScroll>
+            <div className="flex flex-col gap-[20px]">
+              <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
+                TESTIMONIALS
+              </p>
+              <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
+                Hear From Customers
+              </h2>
+            </div>
+          </AnimateOnScroll>
 
           {/* Testimonial quote */}
-          <div className="border-t border-[#e5e5e5] pt-10">
-            <p className="text-[24px] font-medium leading-[1.4] text-[#101010] max-w-[900px] max-md:text-[18px]">
-              &ldquo;{testimonials[activeTestimonial].quote}&rdquo;
-            </p>
-          </div>
+          <AnimateOnScroll delay={100}>
+            <div className="border-t border-[#e5e5e5] pt-10">
+              <p className="text-[24px] font-medium leading-[1.4] text-[#101010] max-w-[900px] max-md:text-[18px]">
+                &ldquo;{testimonials[activeTestimonial].quote}&rdquo;
+              </p>
+            </div>
+          </AnimateOnScroll>
 
           {/* Avatar tabs */}
+          <AnimateOnScroll delay={200}>
           <div className="flex items-center gap-6 pt-4 max-md:flex-col max-md:items-start max-md:gap-4">
             {testimonials.map((testimonial, index) => (
               <button
@@ -308,6 +322,7 @@ export default function ServicesPage() {
               </button>
             ))}
           </div>
+          </AnimateOnScroll>
         </div>
       </section>
     </>
