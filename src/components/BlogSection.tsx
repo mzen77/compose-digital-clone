@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 const blogs = [
   {
@@ -29,47 +30,50 @@ export default function BlogSection() {
     <section className="w-full flex justify-center items-center px-10 py-[100px] overflow-hidden">
       <div className="max-w-[1360px] w-full flex flex-col gap-[50px]">
         {/* Header */}
-        <div className="flex flex-col gap-2">
-          <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
-            Latest Blog
-          </p>
-          <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010]">
-            Stay up to Date with the Latest News
-          </h2>
-        </div>
+        <AnimateOnScroll>
+          <div className="flex flex-col gap-2">
+            <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
+              Latest Blog
+            </p>
+            <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010]">
+              Stay up to Date with the Latest News
+            </h2>
+          </div>
+        </AnimateOnScroll>
 
         {/* Blog Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
-          {blogs.map((blog) => (
-            <a
-              key={blog.title}
-              href="#"
-              className="flex flex-col gap-0 group cursor-pointer"
-            >
-              {/* Image */}
-              <div className="relative w-full aspect-[455/541] overflow-hidden rounded-t-[10px]">
-                <Image
-                  src={blog.image}
-                  alt={blog.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </div>
+          {blogs.map((blog, i) => (
+            <AnimateOnScroll key={blog.title} delay={i * 100}>
+              <a
+                href="#"
+                className="flex flex-col gap-0 group cursor-pointer"
+              >
+                {/* Image */}
+                <div className="relative w-full aspect-[455/541] overflow-hidden rounded-t-[10px]">
+                  <Image
+                    src={blog.image}
+                    alt={blog.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
 
-              {/* Content */}
-              <div className="p-6 flex flex-col gap-3 border border-t-0 border-[#e5e5e5] rounded-b-[10px]">
-                <span className="text-[13px] font-medium text-[#595959]">
-                  {blog.date}
-                </span>
-                <h3 className="text-[24px] font-medium leading-[1.2] text-[#101010]">
-                  {blog.title}
-                </h3>
-                <p className="text-sm leading-[1.5] text-[#595959]">
-                  {blog.excerpt}
-                </p>
-              </div>
-            </a>
+                {/* Content */}
+                <div className="p-6 flex flex-col gap-3 border border-t-0 border-[#e5e5e5] rounded-b-[10px]">
+                  <span className="text-[13px] font-medium text-[#595959]">
+                    {blog.date}
+                  </span>
+                  <h3 className="text-[24px] font-medium leading-[1.2] text-[#101010]">
+                    {blog.title}
+                  </h3>
+                  <p className="text-sm leading-[1.5] text-[#595959]">
+                    {blog.excerpt}
+                  </p>
+                </div>
+              </a>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

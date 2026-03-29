@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 const projects = [
   {
@@ -58,53 +59,56 @@ export function ProjectsSection() {
     <section className="w-full flex justify-center items-center px-10 py-[100px] overflow-hidden max-md:px-5 max-md:py-16">
       <div className="max-w-[1360px] w-full flex flex-col gap-[60px]">
         {/* Header */}
-        <div className="flex flex-col gap-2">
-          <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
-            Our Projects
-          </p>
-          <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
-            Showcasing Our Success Stories
-          </h2>
-        </div>
+        <AnimateOnScroll>
+          <div className="flex flex-col gap-2">
+            <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
+              Our Projects
+            </p>
+            <h2 className="text-[42px] font-medium leading-[1.2] text-[#101010] max-md:text-[28px]">
+              Showcasing Our Success Stories
+            </h2>
+          </div>
+        </AnimateOnScroll>
 
         {/* Project Cards */}
         {projects.map((project, i) => (
-          <div
-            key={project.company}
-            className={`flex gap-[30px] items-start max-md:flex-col ${
-              i % 2 === 1 ? "flex-row-reverse" : "flex-row"
-            }`}
-          >
-            {/* Image side */}
-            <div className="w-1/2 relative aspect-[688/480] overflow-hidden rounded-[10px] max-md:w-full">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover"
-              />
-            </div>
+          <AnimateOnScroll key={project.company} delay={i * 100}>
+            <div
+              className={`flex gap-[30px] items-start max-md:flex-col ${
+                i % 2 === 1 ? "flex-row-reverse" : "flex-row"
+              }`}
+            >
+              {/* Image side */}
+              <div className="w-1/2 relative aspect-[688/480] overflow-hidden rounded-[10px] max-md:w-full">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
-            {/* Content side */}
-            <div className="w-1/2 flex flex-col gap-4 py-6 max-md:w-full max-md:py-0">
-              <div className="flex items-center gap-3">
-                <span className="text-sm text-[#595959]">
-                  {project.company}
-                </span>
-                <span className="text-sm text-[#595959]">{project.year}</span>
-              </div>
-              <h3 className="text-[24px] font-medium leading-[1.2] text-[#101010] max-md:text-[20px]">
-                {project.title}
-              </h3>
-              <p className="text-base leading-[1.4] text-[#454545]">
-                {project.description}
-              </p>
-              <div className="mt-4">
-                <p className="text-sm text-[#101010]">{project.author}</p>
-                <p className="text-sm text-[#595959]">{project.role}</p>
+              {/* Content side */}
+              <div className="w-1/2 flex flex-col gap-4 py-6 max-md:w-full max-md:py-0">
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-[#595959]">
+                    {project.company}
+                  </span>
+                  <span className="text-sm text-[#595959]">{project.year}</span>
+                </div>
+                <h3 className="text-[24px] font-medium leading-[1.2] text-[#101010] max-md:text-[20px]">
+                  {project.title}
+                </h3>
+                <p className="text-base leading-[1.4] text-[#454545]">
+                  {project.description}
+                </p>
+                <div className="mt-4">
+                  <p className="text-sm text-[#101010]">{project.author}</p>
+                  <p className="text-sm text-[#595959]">{project.role}</p>
+                </div>
               </div>
             </div>
-          </div>
+          </AnimateOnScroll>
         ))}
 
         {/* Bottom CTA Bar */}

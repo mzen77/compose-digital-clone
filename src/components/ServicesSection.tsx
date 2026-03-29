@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { PlusIcon, MinusIcon, ArrowRightIcon } from "./icons";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 const services = [
   {
@@ -102,7 +103,7 @@ export default function ServicesSection() {
     <section className="w-full flex justify-center items-center px-10 py-[100px] overflow-hidden">
       <div className="max-w-[1360px] w-full flex flex-col md:flex-row gap-10 md:gap-[100px]">
         {/* Left Column: Content */}
-        <div className="w-full md:w-[630px] flex flex-col gap-[30px] shrink-0">
+        <AnimateOnScroll className="w-full md:w-[630px] flex flex-col gap-[30px] shrink-0">
           <p className="text-[13px] font-medium uppercase tracking-[0.03em] text-[#101010]">
             Our services
           </p>
@@ -121,10 +122,10 @@ export default function ServicesSection() {
               Our true success is measured by theirs.
             </p>
           </div>
-        </div>
+        </AnimateOnScroll>
 
         {/* Right Column: Accordion */}
-        <div className="flex-1 flex flex-col">
+        <AnimateOnScroll delay={150} className="flex-1 flex flex-col">
           {services.map((service, index) => (
             <div
               key={service.title}
@@ -154,7 +155,7 @@ export default function ServicesSection() {
               />
             </div>
           ))}
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );
