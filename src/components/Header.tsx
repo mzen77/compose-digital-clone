@@ -2,19 +2,26 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { ArrowUpRightIcon } from "./icons";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Home", href: "/", active: true },
-  { label: "Services", href: "/services", active: false },
-  { label: "Projects", href: "/projects", active: false },
-  { label: "About", href: "/about", active: false },
-  { label: "Blog", href: "/blog", active: false },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full flex justify-center items-start pt-5">
@@ -38,7 +45,7 @@ export function Header() {
               href={link.href}
               className={cn(
                 "rounded-full px-3 py-1.5 text-[13px] font-medium uppercase tracking-[0.03em] text-text-primary transition-colors duration-200",
-                link.active
+                isActive(link.href)
                   ? "bg-nav-active"
                   : "bg-transparent hover:bg-white/50"
               )}
@@ -97,7 +104,7 @@ export function Header() {
                 href={link.href}
                 className={cn(
                   "rounded-xl px-4 py-3 text-sm font-medium text-text-primary transition-colors duration-200",
-                  link.active
+                  isActive(link.href)
                     ? "bg-nav-active"
                     : "bg-transparent hover:bg-black/5"
                 )}
