@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/Header";
+import FooterSection from "@/components/FooterSection";
+import { FreeCallButton } from "@/components/FreeCallButton";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -25,7 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} antialiased`}>
       <body className="min-h-screen bg-page text-foreground font-sans">
-        {children}
+        <Header />
+        <main>{children}</main>
+        <FooterSection />
+        <FreeCallButton />
       </body>
     </html>
   );
